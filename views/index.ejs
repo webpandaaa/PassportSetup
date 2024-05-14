@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/register.css">
+</head>
+<body> 
+  <div id="main">
+    <div id="left">
+      <h1>Dribble</h1>
+      <h2>Discover the world's top <br> Designers & Creatives</h2>
+      <div id="cenle">
+        <h3>Thank you for Register</h3>
+        <p> Now you are a member of dribble </p>
+      </div>
+      <p> Art by ARSV</p>
+    </div>
+    <div id="right">
+      <div id="cenri">
+      <h1>Welcome to Dribble</h1>
+      <form action="/register" method="post">
+      <input  id="register" type="text" placeholder="Username" name="username">
+      <input type="password" placeholder="Password" name="password" >
+      <input type="email" placeholder="Email" name="email">
+      <!-- // <input type="string" placeholder="ImageId" name="image"> -->
+      <input type="number" placeholder="Contact" name="Contact">
+      <input id="submit" type="submit">  <br>
+      already a member? please <span>  </span> <a href="/loginUser">Login </a>
+      </form> 
+    </div>
+    </div> 
+  </div> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+      var inp = document.querySelector("#register")
+      inp.addEventListener("input" , function(){
+        var val = inp.value
+        if(val.trim().length > 0){
+        axios.get(`/username/${val}`)
+        .then(function(data){
+          if(data.data.found){
+            inp.style.outlineColor = "red"
+            document.querySelector("#submit").setAttribute("disabled" , true)
+          }
+          else{
+            inp.style.outlineColor = "black"
+            document.querySelector("#submit").removeAttribute("disabled"  );
+          }
+        })
+      }
+      else{
+        inp.style.outlineColor = "black"
+      
+      }
+      })
+  </script>
+ 
+</body>
+</html>
+
+

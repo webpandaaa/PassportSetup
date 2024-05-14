@@ -1,0 +1,20 @@
+<% include ./partials/header.ejs %>
+    <div id="main">
+        <h1 id="wlcm"> Welcome to Dribble</h1>
+        <% allusers.forEach(function(user){ %>
+        <div id="card">
+            <div id="img">
+                <img src=" /images/upload/<%= user.image %>" alt="">
+            </div>
+            <div id="text">
+                <h1> <%= user.username %> </h1>
+                <h4> <%= user.email %> </h4>
+                <p id="peo"> likes by <span><%= user.like.length %></span> people</p>
+                <a href="/like/<%= user._id %>" class="btn btn-primary">Like Profile</a>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+
+</body>
+</html> 
